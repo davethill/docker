@@ -44,9 +44,9 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=America/Detroit
-            - URL=det1181.com
+            - URL=yoururl.com
             - VALIDATION=http
-            - EMAIL=det1181@gmail.com
+            - EMAIL=youremail@email.com
         volumes:
             - /path/to/config:/config
         ports:
