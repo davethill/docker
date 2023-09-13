@@ -1,0 +1,55 @@
+---
+version: '3.4'
+services:
+    heimdall:
+        image: linuxserver/heimdall:latest
+        volumes:
+            - /path/to/config:/config
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/New_York
+        ports:
+            - 1080:80
+            - 1443:443
+        restart: unless-stopped
+    tautulli:
+        image: tautulli/tautulli:latest
+        volumes:
+            - /path/to/config:/config
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/New_York
+        ports:
+            - 8181:8181
+        restart: unless-stopped
+    overseerr:
+        image: linuxserver/overseerr:latest
+        volumes:
+            - /path/to/config:/config
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/New_York
+        ports:
+            - 5055:5055
+        restart: unless-stopped
+    swag:
+        image: lscr.io/linuxserver/swag
+        container_name: swag
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/Detroit
+            - URL=det1181.com
+            - VALIDATION=http
+            - EMAIL=det1181@gmail.com
+        volumes:
+            - /path/to/config:/config
+        ports:
+            - 443:443
+            - 80:80
+        restart: unless-stopped

@@ -1,0 +1,61 @@
+---
+version: '3.4'
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Detroit
+    volumes:
+      - /path/to/sabnzb/config:/config
+      - /path/to/sabnzb/scripts:/scripts
+      - /path/to/downloads/complete:/downloads
+      - /path/to/downloads/incomplete:/incomplete-downloads
+    ports:
+      - 8282:8080
+      - 9191:9090
+    restart: unless-stopped
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Detroit
+    volumes:
+      - /path/to/sonarr:/config
+      - /path/to/media:/media
+      - /path/to/downloads/complete:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Detroit
+    volumes:
+      - /path/to/radarr:/config
+      - /path/to/media:/media
+      - /path/to/downloads/complete:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Detroit
+    volumes:
+      - /path/to/filebrowser/filebrowser.db:/database.db
+      - /path/to/media:/srv/Media
+      - /path/to/downloads:/srv/Downloads
+    ports:
+      - 7080:80
+    restart: unless-stopped
