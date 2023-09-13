@@ -1,4 +1,4 @@
-# Media Management Yaml Apps
+# Media Management Containers
 - sabnzbd
   - https://github.com/linuxserver/docker-sabnzbd
 - sonarr
@@ -8,7 +8,7 @@
 - filebrowser
   - https://github.com/filebrowser/filebrowser
 
-# Services Yaml Apps
+# Services Containers
 - heimdall
   - https://github.com/linuxserver/docker-heimdall
 - tautulli
